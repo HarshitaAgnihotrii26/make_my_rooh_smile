@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Too Much Love 💕</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Comic Sans MS", "Poppins", cursive;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #ffd6e8, #e0c3fc);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    #container {
+      text-align: center;
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      width: 90%;
+      max-width: 400px;
+      position: relative;
+    }
+
+    h1 {
+      color: #ff4d88;
+    }
+
+    p {
+      color: #555;
+      font-size: 16px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 25px;
+      font-size: 16px;
+      border: none;
+      border-radius: 25px;
+      background: #ff4d88;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+      position: relative;
+    }
+
+    #counter {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #888;
+    }
+
+    .popup {
+      position: absolute;
+      background: #ffe6f0;
+      padding: 10px 15px;
+      border-radius: 15px;
+      font-size: 14px;
+      color: #ff3366;
+      animation: fadeUp 2.5s forwards;
+      pointer-events: none;
+    }
+
+    @keyframes fadeUp {
+      0% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(-60px); }
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 20px;
+      animation: float 3s linear forwards;
+    }
+
+    @keyframes float {
+      0% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(-100px); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="container">
+    <h1>⚠️ Warning ⚠️</h1>
+    <p>
+      Hey <strong id="name"></strong> 💖<br>
+      Too much love ahead 😏<br>
+      This can make you smile 🤭🤫
+    </p>
+    <button id="loveBtn">Enter 💕🥀</button>
+    <div id="counter">Times <span id="name2"></span> trapped by my love: 0</div>
+  </div>
+
+  <script>
+    const boyfriendName = "Rooh";
+
+    document.getElementById("name").innerText = boyfriendName;
+    document.getElementById("name2").innerText = boyfriendName;
+
+    const messages = [
+      `${boyfriendName}, why are you clicking again? 😤❤️`,
+      `Go do your work, ${boyfriendName}… after loving me 😌💘`,
+      `${boyfriendName}, stop clicking!!! (don’t stop 😏)`,
+      `Congrats ${boyfriendName}, you’re stuck with me 💍`,
+      `Each click = one kiss for you, ${boyfriendName} 😘`,
+      `Miss me already, ${boyfriendName}? 💖`,
+      `${boyfriendName}, this is what love feels like 😈💕`,
+      `I warned you, ${boyfriendName}… too much love!`,
+      `Still here, ${boyfriendName}? I’m flattered 😌❤️`,
+      `SURPRISE ${boyfriendName}! HARSHU LOVE YOU 🥺💘`
+    ];
+
+    const button = document.getElementById("loveBtn");
+    const counterText = document.getElementById("counter");
+    const container = document.getElementById("container");
+
+    let count = 0;
+
+    document.body.addEventListener("click", (e) => {
+      if (e.target === button && count === 0) return;
+
+      count++;
+      counterText.innerHTML = `Times <strong>${boyfriendName}</strong> trapped by my love: ${count}`;
+
+      const popup = document.createElement("div");
+      popup.className = "popup";
+      popup.innerText = messages[Math.floor(Math.random() * messages.length)];
+      popup.style.left = Math.random() * (window.innerWidth - 150) + "px";
+      popup.style.top = Math.random() * (window.innerHeight - 50) + "px";
+      document.body.appendChild(popup);
+      setTimeout(() => popup.remove(), 2500);
+
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerText = "💖";
+      heart.style.left = Math.random() * window.innerWidth + "px";
+      heart.style.top = window.innerHeight + "px";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 3000);
+
+      if (count === 15) {
+        container.innerHTML = `
+          <h1>💝 Surprise for ${boyfriendName} 💝</h1>
+          <p>
+            All this irritation was just because  
+            <br><strong>I love you soo much meri jaan!🥺❤️</strong>
+          </p>
+          <p>please jldi milne aao 🤗</p>
+        `;
+      }
+    });
+
+    button.addEventListener("mouseover", () => {
+      const x = Math.random() * 200 - 100;
+      const y = Math.random() * 200 - 100;
+      button.style.transform = `translate(${x}px, ${y}px)`;
+    });
+  </script>
+
+</body>
+</html>
